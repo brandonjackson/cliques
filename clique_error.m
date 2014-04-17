@@ -1,7 +1,7 @@
 CLIQUE_SIZE = 30;
 CLIQUE_DENSITIES = [0.1, 0.5, 1, 2, 3];
 NODE_COUNTS = [10000, 50000, 100000, 200000, 300000 ];
-N_DRAWS = 10;
+N_DRAWS = 20;
 P_INPUT = 0.2;
 
 error_matrix = zeros(length(CLIQUE_DENSITIES),length(NODE_COUNTS));
@@ -46,6 +46,10 @@ xlabel('nodes');
 ylabel('clique density');
 title('Error');
 
+
+% initial and final matrices should use same color scale
+color_scale = [min([initial_matrix(:);final_matrix(:)]), max([initial_matrix(:);final_matrix(:)])];
+
 figure();
 imagesc(initial_matrix);
 colorbar();
@@ -61,6 +65,7 @@ set(gca,'XTickLabel',xlabels);
 xlabel('nodes');
 ylabel('clique density');
 title('Fraction of Active Cliques (Initial)');
+caxis(color_scale);
 
 figure();
 imagesc(final_matrix);
@@ -77,3 +82,4 @@ set(gca,'XTickLabel',xlabels);
 xlabel('nodes');
 ylabel('clique density');
 title('Fraction of Active Cliques (Final)');
+caxis(color_scale);
