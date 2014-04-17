@@ -25,10 +25,14 @@ classdef Clique
             C.CLIQUE_SIZE = clique_size;
             C.N_EDGES = round((C.CLIQUE_SIZE^2 / 2) * C.N_CLIQUES);
             
+            C.cliques = C.generateCliques();
+        end
+        
+        function cliques = generateCliques(C)
             % Build Cliques matrix (size = [N_CLIQUES x CLIQUE_SIZE] by 
             % randomly drawing integers in the range [1, N_NODES]
-            C.cliques = randi(C.N_NODES,C.N_CLIQUES, C.CLIQUE_SIZE, 'uint32'); 
-            C.cliques = sort(C.cliques,2);
+            cliques = randi(C.N_NODES,C.N_CLIQUES, C.CLIQUE_SIZE, 'uint32');
+            cliques = sort(cliques,2);
         end
         
         function [mean_overlap, overlap_matrix] = findOverlap(C)
