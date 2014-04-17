@@ -90,7 +90,7 @@ classdef Clique
             end
         end
         
-        function clique_error = predictCliqueError(C, p_input)
+        function [clique_error, n_firing_initial, n_firing_final] = predictCliqueError(C, p_input)
                         
             [stimulation, active_nodes] = C.stimulateRandomNodes(p_input);
             cliques_firing = C.stimulation2firing(stimulation);
@@ -109,9 +109,9 @@ classdef Clique
             
             clique_error = (n_firing_final - n_firing_initial) / n_firing_initial;
             
-            fprintf('n_firing_initial = %d\n',n_firing_initial);
-            fprintf('n_firing_final = %d\n',n_firing_final);
-            fprintf('clique_error = %.2f\n',clique_error);
+%             fprintf('n_firing_initial = %d\n',n_firing_initial);
+%             fprintf('n_firing_final = %d\n',n_firing_final);
+%             fprintf('clique_error = %.2f\n',clique_error);
         end
         
         function edges = toEdgeList(C, filename)
